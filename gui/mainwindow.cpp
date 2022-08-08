@@ -64,9 +64,9 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_pushButton_clicked()
 {
-    int x = ui->xSpinBox->value();
-    int y = ui->ySpinBox->value();
-    int rad = ui->radSpinBox->value();
+    int x = ui->xObstacleSpinBox->value();
+    int y = ui->yObstacleSpinBox->value();
+    int rad = ui->radObstacleSpinBox->value();
     scene.addEllipse(x-rad,y-rad,rad*2,rad*2);
 }
 
