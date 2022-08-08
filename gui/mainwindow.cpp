@@ -28,7 +28,7 @@ void MainWindow::on_actionSave_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this,tr("Open Map"), "/Users/jianchen/Workspaces/pBot/maps", tr("Json Files (*.json)"));
+    QString filename = QFileDialog::getOpenFileName(this,tr("Open pMap"), "/Users/jianchen/Workspaces/pBot/maps", tr("Json Files (*.json)"));
     if(filename.isNull()) return;
     QFile file;
     file.setFileName(filename);

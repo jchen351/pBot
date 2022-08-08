@@ -444,7 +444,7 @@
     <string>Save</string>
    </property>
    <property name="toolTip">
-    <string>Save Current Map</string>
+    <string>Save Current pMap</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -455,7 +455,7 @@
     <string>Open</string>
    </property>
    <property name="toolTip">
-    <string>Open a Saved Map</string>
+    <string>Open a Saved pMap</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -466,7 +466,7 @@
     <string>New</string>
    </property>
    <property name="toolTip">
-    <string>New Map</string>
+    <string>New pMap</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>

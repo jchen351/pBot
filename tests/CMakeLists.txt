@@ -1,0 +1,7 @@
+set(gtest_force_shared_crt on)
+add_subdirectory(${CMAKE_SOURCE_DIR}/extern/googletest ${CMAKE_BINARY_DIR}/extern/googletest)
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+set(TEST_SOURCE test_MapFileIO.cpp)
+add_executable(pBotTest ${TEST_SOURCE})
+include_directories(${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(pBotTest gtest gtest_main pBot)
