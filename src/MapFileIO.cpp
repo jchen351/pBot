@@ -8,6 +8,7 @@
 #include <sstream>
 
 const std::string MapFileIO::file_suffix = "*.pmap";
+
 pMap MapFileIO::load_map_from_file(const string &file_name) {
   if (!validate_file_name(file_name))
     throw std::exception("Invalid file suffix");
