@@ -33,9 +33,11 @@ private slots:
 
   void on_radBotSpinBox_valueChanged(int);
 
+  void on_pix_pb_clicked();
+
 private:
   Ui::MainWindow *ui;
-  QGraphicsScene scene;
+  QGraphicsScene scene,pixScene;
   pMap mMap;
   bool botUpdated = false;
 
@@ -44,5 +46,6 @@ private:
   void DrawBot(int x, int y, int rad);
   void DrawGoal(int x, int y);
   void DrawPath();
+  void DrawPixes();
 };
 #endif // MAINWINDOW_H

@@ -260,6 +260,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="addObstaclePushButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Add</string>
            </property>
@@ -367,6 +370,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="setGoalPushButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Set</string>
            </property>
@@ -524,6 +530,13 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="pix_pb">
+           <property name="text">
+            <string>Pix View</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -551,6 +564,9 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>

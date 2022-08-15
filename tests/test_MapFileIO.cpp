@@ -17,7 +17,7 @@ TEST_F(MapFileIoTest, valid_file_name) {
   ASSERT_TRUE(MapFileIO::validate_file_name("f.pmap"));
   ASSERT_TRUE(MapFileIO::validate_file_name("fff.pmap"));
   ASSERT_FALSE(MapFileIO::validate_file_name(".pmap"));
-  ASSERT_FALSE(MapFileIO::validate_file_name("fff.map"));
+  ASSERT_FALSE(MapFileIO::validate_file_name("fff.pixMap"));
 }
 TEST_F(MapFileIoTest, load_map_from_file) {
 
