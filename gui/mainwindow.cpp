@@ -43,8 +43,8 @@ void MainWindow::on_addObstaclePushButton_clicked() {
   int x = ui->xObstacleSpinBox->value();
   int y = ui->yObstacleSpinBox->value();
   int rad = ui->radObstacleSpinBox->value();
-  mMap.obstacles.emplace_back(x, y, rad);
-  DrawObstacle(mMap.obstacles.back(), ui->radBotSpinBox->value());
+  mMap.obstacle_list.emplace_back(x, y, rad);
+  DrawObstacle(mMap.obstacle_list.back(), ui->radBotSpinBox->value(), false);
 }
 
 void MainWindow::on_setGoalPushButton_clicked() {
@@ -54,9 +54,11 @@ void MainWindow::on_setGoalPushButton_clicked() {
 
 void MainWindow::on_startBotPushButton_clicked() {
   botUpdated = true;
+  scene.clear();
   DrawBot(ui->xBotSpinBox->value(), ui->yBotSpinBox->value(),
           ui->radBotSpinBox->value());
   DrawGoal(ui->xGoalSpinBox->value(), ui->yGoalSpinBox->value());
+  DrawObstacles(ui->radBotSpinBox->value());
   DrawPath();
 }
 
@@ -81,7 +83,7 @@ void MainWindow::on_radBotSpinBox_valueChanged(int extra_rad) {
   DrawObstacles(extra_rad);
 }
 
-void MainWindow::DrawObstacle(const pObstacle &obstacle, int extra_rad) {
+void MainWindow::DrawObstacle(const pObstacle &obstacle, int extra_rad, bool plot = false) {
   int x = obstacle.x;
   int y = obstacle.y;
   int rad = obstacle.rad;
@@ -91,13 +93,14 @@ void MainWindow::DrawObstacle(const pObstacle &obstacle, int extra_rad) {
                    QBrush(QColor{255, 255, 0, 5}));
   scene.addEllipse(x - rad, y - rad, rad * 2, rad * 2, QPen(),
                    QBrush{QColor{0, 0, 0}});
-  mMap.plot_obstacle(obstacle,extra_rad);
+  if(plot) mMap.plot_obstacle(obstacle,extra_rad);
 }
 
 void MainWindow::DrawObstacles(int extra_rad) {
-  for (const auto &obstacle: mMap.obstacles) {
-    DrawObstacle(obstacle, extra_rad);
+  for (const auto &obstacle: mMap.obstacle_list) {
+    DrawObstacle(obstacle, extra_rad, false);
   }
+  mMap.plot_obstacles(extra_rad);
 }
 
 void MainWindow::DrawBot(int x, int y, int rad) {
@@ -113,7 +116,7 @@ void MainWindow::DrawGoal(int x, int y) {
 
 void MainWindow::DrawPath() {
   pPoint start (ui->xBotSpinBox->value(),ui->yBotSpinBox->value());
-  pPoint goal (ui->yGoalSpinBox->value(),ui->yGoalSpinBox->value());
+  pPoint goal (ui->xGoalSpinBox->value(),ui->yGoalSpinBox->value());
   mMap.find_path(start,goal);
   for (const auto & p:mMap.path) {
       scene.addRect(p.x,p.y,1,1);
@@ -128,9 +131,9 @@ void MainWindow::on_pix_pb_clicked()
 }
 
 void MainWindow::DrawPixes() {
-  for (int i = 0; i <mMap.pixMap.size(); ++i) {
-    for (int j = 0; j < mMap.pixMap[0].size(); ++j) {
-      if(mMap.pixMap[i][j]){
+  for (int i = 0; i <mMap.obs_pix_map.size(); ++i) {
+    for (int j = 0; j < mMap.obs_pix_map[0].size(); ++j) {
+      if(mMap.obs_pix_map[i][j]){
         pixScene.addRect(i,j,1,1);
       }
     }

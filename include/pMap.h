@@ -23,7 +23,7 @@ struct pPoint {
   pPoint(int x, int y): x(x), y(y), cost(INT_MAX){}
   friend bool operator==(const pPoint &lhs, const pPoint &rhs) { return rhs.x == lhs.x && rhs.y == lhs.y; }
 
-  friend bool operator<(const pPoint &lhs, const pPoint &rhs) { return lhs.cost < rhs.cost; }
+  friend bool operator<(const pPoint &lhs, const pPoint &rhs) { return lhs.cost > rhs.cost; }
 
 
 };
@@ -46,11 +46,12 @@ struct pMap {
 
   int width;
   int height;
-  std::vector<pObstacle> obstacles;
-  vector<vector<bool> > pixMap;
-  vector<vector<pPoint> > pointMap;
-  void plot_obstacle(const pObstacle &obstacle, int bot_rad);
+  std::vector<pObstacle> obstacle_list;
+  vector<vector<bool> > obs_pix_map;
+  vector<vector<pPoint> > point_cost_map;
 
+  void plot_obstacle(const pObstacle &obstacle, int bot_rad);
+  void plot_obstacles(int bot_rad);
   bool valid_x_y(int x, int y);
 
   queue<pPoint> open_list;
@@ -60,7 +61,7 @@ struct pMap {
   vector<pPoint*> get_neighbor(const pPoint&);
   vector<pPoint> path;
   void reconstruct_path(std::unordered_map<pPoint, pPoint> &camFrom, pPoint& current);
-
+  void reset_point_cost_map();
 };
 
 #endif // PBOT_PMAP_H

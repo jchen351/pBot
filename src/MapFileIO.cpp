@@ -11,7 +11,7 @@ const std::string MapFileIO::file_suffix = "*.pmap";
 
 pMap MapFileIO::load_map_from_file(const string &file_name) {
   if (!validate_file_name(file_name))
-    throw std::exception("Invalid file suffix");
+    throw std::exception();
 
   ifstream file(file_name);
 
@@ -31,18 +31,18 @@ pMap MapFileIO::load_map_from_file(const string &file_name) {
     getline(iss1, y, ',');
     getline(iss1, rad, ',');
     pObstacle obstacle = pObstacle(stoi(x), stoi(y), stoi(rad));
-    map.obstacles.push_back(std::move(obstacle));
+    map.obstacle_list.push_back(std::move(obstacle));
   }
   file.close();
   return map;
 }
 void MapFileIO::save_map_to_file(const pMap &map, const string &file_name) {
   if (!validate_file_name(file_name))
-    throw std::exception("Invalid file suffix");
+    throw std::exception();
   ofstream file;
   file.open(file_name);
   file << map.width << ',' << map.height << '\n';
-  for (const auto &obstacle : map.obstacles)
+  for (const auto &obstacle : map.obstacle_list)
     file << obstacle.x << ',' << obstacle.y << ',' << obstacle.rad << '\n';
   file.close();
 }

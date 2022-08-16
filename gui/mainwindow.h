@@ -41,7 +41,7 @@ private:
   pMap mMap;
   bool botUpdated = false;
 
-  void DrawObstacle(const pObstacle &obstacle, int extra_rad);
+  void DrawObstacle(const pObstacle &obstacle, int extra_rad, bool plot);
   void DrawObstacles(int extra_rad);
   void DrawBot(int x, int y, int rad);
   void DrawGoal(int x, int y);
